@@ -21,14 +21,14 @@ public class Ball
         this.size = size;
     }
 
-    public void updatePosition(Player player)
+    public void updatePosition(Player leftPlayer, Player rightPlayer)
     {
         x += speedX;
         y += speedY;
-        checkCollision(player);
+        checkCollision(leftPlayer, rightPlayer);
     }
 
-    private void checkCollision(Player player)
+    private void checkCollision(Player leftPlayer, Player rightPlayer)
     {
         if(x + size >= 1.0f || x - size <= -1.0f)
         {
@@ -39,16 +39,27 @@ public class Ball
             speedY = -speedY;
         }
 
-        // Kollision mit dem Spieler
-        if(x - size < player.getX() + player.getWidth() && x + size > player.getX())
+        // Collision with left player
+        if(x - size < leftPlayer.getX() + leftPlayer.getWidth() && x + size > leftPlayer.getX())
         {
-            if (y + size > player.getY() - player.getHeight() / 2 && y - size < player.getY() + player.getHeight() / 2)
-            {
-                speedX = -speedX;
+            bounceOffPlayer(leftPlayer);
+        }
 
-                float hitPosition = (y - player.getY()) / (player.getHeight() / 2);
-                speedY = hitPosition * MAX_VERTICAL_SPEED ;
-            }
+        // Collision with right player
+        if (x + size > rightPlayer.getX() - rightPlayer.getWidth() && x - size < rightPlayer.getX())
+        {
+            bounceOffPlayer(rightPlayer);
+        }
+    }
+
+    private void bounceOffPlayer(Player player)
+    {
+        if(y + size > player.getY() - player.getHeight() / 2 && y - size < player.getY() + player.getHeight() / 2)
+        {
+            speedX = -speedX;
+
+            float hitPosition = (y - player.getY()) / (player.getHeight() / 2);
+            speedY = hitPosition * MAX_VERTICAL_SPEED;
         }
     }
 
