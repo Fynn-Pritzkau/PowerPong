@@ -10,6 +10,8 @@ public class Ball
     private float speedY;
     private final float size;
 
+    private static final float MAX_VERTICAL_SPEED = 0.02f;
+
     public Ball(float x, float y, float speedX, float speedY, float size)
     {
         this.x = x;
@@ -28,21 +30,24 @@ public class Ball
 
     private void checkCollision(Player player)
     {
-        if (x + size >= 1.0f || x - size <= -1.0f)
+        if(x + size >= 1.0f || x - size <= -1.0f)
         {
             speedX = -speedX;
         }
-        if (y + size >= 1.0f || y - size <= -1.0f)
+        if(y + size >= 1.0f || y - size <= -1.0f)
         {
             speedY = -speedY;
         }
 
         // Kollision mit dem Spieler
-        if (x - size < player.getX() + player.getWidth() && x + size > player.getX())
+        if(x - size < player.getX() + player.getWidth() && x + size > player.getX())
         {
             if (y + size > player.getY() - player.getHeight() / 2 && y - size < player.getY() + player.getHeight() / 2)
             {
                 speedX = -speedX;
+
+                float hitPosition = (y - player.getY()) / (player.getHeight() / 2);
+                speedY = hitPosition * MAX_VERTICAL_SPEED ;
             }
         }
     }

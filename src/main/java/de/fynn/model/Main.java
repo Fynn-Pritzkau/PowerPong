@@ -64,7 +64,7 @@ public class Main
         GL.createCapabilities();
 
         // Create a ball instance
-        Ball ball = new Ball(0.0f, 0.0f, 0.01f, 0.01f, 0.5f);
+        Ball ball = new Ball(0.0f, 0.0f, 0.02f, 0.02f, 0.02f);
         // Create a player instance
         Player player = new Player(-0.95f, 0.0f, 0.05f, 0.3f, 0.02f);
 
