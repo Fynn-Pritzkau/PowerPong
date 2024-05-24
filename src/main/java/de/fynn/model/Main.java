@@ -121,12 +121,12 @@ public class Main
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        ball = new Ball(0.0f, 0.0f, 0.02f, 0.02f, 0.02f);
+        ball = new Ball(0.0f, 0.0f, 0.02f, 0.03f, 0.02f);
 
-        player = new Player(-0.95f, 0.0f, 0.05f, 0.3f, 0.02f);
+        player = new Player(-0.95f, 0.0f, 0.05f, 0.3f, 0.04f);
 
-        //todo Why the fuck must be the positioning 5 off at 0.9 and not 0.95?
-        player2 = new Player(0.9f, 0.0f, 0.05f, 0.3f, 0.02f);
+        //TODO width is - so that the player gets rendered inverted
+        player2 = new Player(0.95f, 0.0f, -0.05f, 0.3f, 0.04f);
 
         // Initialize timing
         lastUpdateTime = glfwGetTime();

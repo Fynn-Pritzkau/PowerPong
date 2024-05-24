@@ -10,7 +10,7 @@ public class Ball
     private float speedY;
     private final float size;
 
-    private static final float MAX_VERTICAL_SPEED = 0.02f;
+    private static final float MAX_VERTICAL_SPEED = 0.03f;
 
     public Ball(float x, float y, float speedX, float speedY, float size)
     {
@@ -46,7 +46,7 @@ public class Ball
         }
 
         // Collision with right player
-        if (x + size > rightPlayer.getX() - rightPlayer.getWidth() && x - size < rightPlayer.getX())
+        if (x + size > rightPlayer.getX() + rightPlayer.getWidth() && x - size < rightPlayer.getX())
         {
             bounceOffPlayer(rightPlayer);
         }
